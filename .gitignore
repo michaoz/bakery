@@ -1,15 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+front-client/node_modules
+front-client/.pnp
+front-client/.pnp.js
 
 # testing
-/coverage
+front-client/coverage
 
 # production
-/build
+front-client/build
 
 # misc
 .DS_Store
@@ -18,9 +18,9 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+front-client/npm-debug.log*
+front-client/yarn-debug.log*
+front-client/yarn-error.log*
 
 # virtual environment
 flask-server/venv
