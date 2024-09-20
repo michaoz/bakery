@@ -1,0 +1,15 @@
+{
+    "selectedShop": {
+        "name": "The City Bakery - Tokyo Shinagawa",
+        "mesh": 53394547,
+        "coordinates": [35.62996469, 139.77797635],
+        "data": {
+            "id": 0,
+            "address": "東京都港区港南2-18-1アトレ品川2階",
+            "station": "品川駅",
+            "budget": "[夜]￥2,000～￥2,999",
+            "openHours": "10:00-20:00",
+            "closeDays": "水曜日"
+        }
+    } 
+}

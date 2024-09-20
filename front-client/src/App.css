@@ -1,0 +1,214 @@
+.App {
+  text-align: center;
+  width: 1000;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1280px;
+  /* background-color: #282c34; */
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #FF5192;
+  border-bottom: solid 2px #FFCCCC;
+  color: black;
+}
+
+/* body {
+  margin: 80px 0px;  
+} */
+
+h1 {
+  margin: 5px;
+  padding: 4px;
+  width: auto;
+  height: 2rem;
+  font-size: 1.6rem;
+}
+
+h1 span {
+  color: #A52A2A;
+}
+
+.button-like {
+  margin: 5px;
+  padding: 4px;
+  width: 200px;
+  height: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  background-color: #FF69A3;
+  cursor: pointer;
+}
+
+.button-like:hover {
+  opacity: 0.8;
+}
+
+.dialog {
+  width: 950px;
+  height: 650px;
+  background-color: #293652;
+  padding: 15px;
+}
+
+.dialog .operation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dialog input {
+  font-size: 1.2rem;
+  height: 1.8rem;
+  width: 500px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: block;
+}
+
+.dialog input::placeholder {
+  color: lightgray;
+}
+
+.dialog .search-results {
+  height: 500px;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.book-search-item {
+  margin: 5px;
+  padding: 5px;
+  background-color: #181a1f;
+  width: 290px;
+  height: 260px;
+  text-align: center;
+  position: relative;
+}
+
+.book-search-item h2 {
+  font-size: 1.2rem;
+  height: 1.4rem;
+  margin: 2px 2px 2px;
+  padding: 2px 2px 2px 10px;
+  text-align: left;
+  width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-search-item .authors {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-search-item .add-book {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: darkseagreen;
+  font-size: 2rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.book-search-item .add-book:hover {
+  opacity: 0.8;
+}
+
+.book-search-item div {
+  font-size: 1rem;
+  height: 1.2rem;
+  margin: 2px 2px 2px;
+  padding: 2px 2px 2px;
+  text-align: right;
+}
+
+.book-search-item img {
+  margin: 10px 5px;
+  height: 180px;
+}
+
+.bakery-row {
+  color: #fff;
+  background-color: #181a1f;
+  display: flex;
+  flex-direction: row;
+}
+
+.bakery-row:nth-child(even) {
+  background-color: #292c35;
+}
+
+.bakery-row div {
+  height: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bakery-row div.name {
+  width: 400px;
+}
+
+.bakery-row div.station {
+  width: 150px;
+}
+
+.bakery-row input {
+  width: 450px;
+  padding: 15px 2px 0;
+  color: #CCFFFF;
+  background-color: #181a1f;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #fff;
+}
+
+.bakery-row:nth-child(even) input {
+  background-color: #292c35;
+}
+
+.bakery-row input:focus {
+  border-bottom: 3px solid #fff;
+  font-size: 1.1rem;
+}
+
+/*.bakery-row .delete-row {*/
+.bakery-row .delete-row button {
+  margin: 7px 15px 7px;
+  padding: 2px; 
+  width: 80px;
+  height: 1.8rem;
+  text-align: center;
+  font-size: 1rem;
+  background-color: #CCFFFF;
+  cursor: pointer;
+}
+
+.bakery-row .delete-row:hover {
+  opacity: 0.8;
+}
+
+.css-app-link-bakeryList {
+  margin: 10px 0px 0px 30px;
+  color: #000;
+}

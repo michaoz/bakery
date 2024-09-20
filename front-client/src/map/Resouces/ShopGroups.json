@@ -1,0 +1,14 @@
+{
+    "shopGroups": {
+        "fav": {
+            "title": "favourite",
+            "list": ["fav1"],
+            "openFlg": false
+        },
+        "tag": {
+            "title": "tagged",
+            "list": ["tagged1", "tagged2"],
+            "openFlg": false
+        }
+    }
+}
