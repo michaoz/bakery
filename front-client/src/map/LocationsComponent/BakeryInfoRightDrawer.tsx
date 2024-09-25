@@ -1,9 +1,9 @@
 import React, {useState, useMemo, useEffect} from 'react';
-import '../Map.css';
-import Drawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import { List, ListItem, ListItemText } from '@mui/material/';
-import Divider from "@mui/material/Divider";
+import '../../css/Map.css';
+import '../../css/map/LocationsComponent/StyleBakeryInfoRightDrawer.css';
+import { PropsTypeBakeryInfoRightDrawer } from '../../types/PropsTypeBakeryInfoRightDrawer';
+import { useTransition, useSpring, animated } from '@react-spring/web'
+import { useNodeRefContext } from '../../context';
 
 type Anchor = "left";
 type LeftMenuProps = {
@@ -12,49 +12,38 @@ type LeftMenuProps = {
         e: React.KeyboardEvent | React.MouseEvent) => void;
 }
 
-const leftMenuListTop: string[] = ['Main Menu', 'Favourite', 'History']
-const leftMenuListBottom: string[] = ['Category', 'Ranking', 'Help']
-
-export const BakeryInfoRightDrawer = (propsLeftMenu: LeftMenuProps) => {
+const BakeryInfoRightDrawer = (propsBakeryInfoRightDrawer: PropsTypeBakeryInfoRightDrawer) => {
     // Props
-    const { isLeftOpen, toggleDrawer } = propsLeftMenu
+    const { bakeryInfoRightDrawer, isOpenRightDrawer } = propsBakeryInfoRightDrawer;
+    const nodeRef = useNodeRefContext();
 
-    ////////////////////////////////////
+    type typeDefinedBakeryInfoKey = keyof typeof bakeryInfoRightDrawer;
 
-    const menuContent = (anchor: Anchor) => {
-
-        return (    
-            <Box 
-                sx={{width: 250}}
-            >
-                <List>
-                    {leftMenuListTop.map((text: string, index: number) => (
-                        <ListItem key={index}>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {leftMenuListBottom.map((text, index) => (
-                        <ListItem key={index}>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-            </Box>  
-        );
-    }
-    
+    // return transitionStyle((style, item) => (
     return (
-        <div>
-            <Drawer
-                anchor={"left"}
-                open={isLeftOpen}
-                onClose={toggleDrawer("left", false)}
-            >
-                {menuContent("left")}
-            </Drawer>
+        <div className="bakery-info-right-drawer" ref={nodeRef} >
+        {/* <animated.div className="bakery-info-right-drawer" style={style}> */}
+            <table>
+                <thead>
+                </thead>
+                <tbody>
+                    {Object.keys(bakeryInfoRightDrawer).map((bakeryInfoKey: string, idx: number) => {
+                        const key = bakeryInfoKey + idx.toString();
+                        const thTitle = bakeryInfoKey.replace("_", " ");
+                        const typeDefinedBakeryInfoKey = bakeryInfoKey as typeDefinedBakeryInfoKey
+                        return (
+                            <tr key={key}>
+                                <th>{thTitle}</th>
+                                <td>{bakeryInfoRightDrawer[typeDefinedBakeryInfoKey]}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+            <div id="idBkeryInfoRightDrawer">{JSON.stringify(bakeryInfoRightDrawer)}</div>
+        {/* </animated.div>   */}
         </div>
     );
 }
+
+export default BakeryInfoRightDrawer;

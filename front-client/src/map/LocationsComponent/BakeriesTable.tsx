@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState, useMemo, useCallback} from 'react';
-import '../Map.css';
+import '../../css/Map.css';
 import Leaflet from 'leaflet'
 import "leaflet/dist/leaflet.css";
 import { createTheme, useTheme, ThemeProvider, styled } from '@mui/material/styles';
@@ -38,6 +38,7 @@ const TdBakery = styled('td')({
 /**CSS *******************************************/
 
 const MapBakeriesTable = (propsMapBakeriesTable: PropsTypeMapBakeriesTable) => {
+  // props
   const { bakeryList, detailClick } = propsMapBakeriesTable;
   
   const bakeryRows = bakeryList.map((b: BakeryGetApi, idx: number) => {

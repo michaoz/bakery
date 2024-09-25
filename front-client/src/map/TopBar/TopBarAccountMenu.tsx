@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useEffect} from 'react';
-import '../Map.css';
+import '../../css/Map.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';

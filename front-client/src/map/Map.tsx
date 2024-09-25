@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState, useMemo, useCallback} from 'react';
+import React, {useEffect, useRef, useState, useMemo, useCallback, PropsWithChildren} from 'react';
 import logo from './logo.svg';
-import './Map.css';
+import '../css/Map.css';
 import { typeSelectedShop } from '../types/TypeSelectedShop'
 import SelectedShop from "./Resouces/SelectedShop.json"
 import ShopGrops from "./Resouces/ShopGroups.json"
@@ -21,6 +21,9 @@ import { BakeryData } from '../types/TypeBakeryData';
 import { BakeryGetApi } from '../types/TypeBakeryGetApi';
 import MapBakeriesTable from './LocationsComponent/BakeriesTable';
 import { initDataBakeryGetApi } from '../data/initDataBakeryGetApi';
+import BakeryInfoRightDrawer from './LocationsComponent/BakeryInfoRightDrawer';
+import FadeInOut from '../common/FadeInOut';
+import SlideInOut from '../common/SlideInOut';
 
 delete (Leaflet.Icon.Default.prototype as any)._getIconUrl;
 
@@ -105,6 +108,10 @@ const Map = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isBakeryInfoRightDrawerOpen, setBakeryInfoRightDrawerOpen] = useState<boolean>(false);
   const [bakeryInfoRightDrawer, setBakeryInfoRightDrawer] = useState<BakeryGetApi>(initDataBakeryGetApi);
+  const [isOpenBakeryInfoRightDrawer, setIsOpenBakeryInfoRightDrawer] = useState<boolean>(false);
+  const [detailCLickedBakeryId, setDetailCLickedBakeryId] = useState<string>("");
+  // const nodeRef = useRef<React.MutableRefObject<null>>(null);  // cssTransition nodeRef for [ FadeInOut ]
+  const nodeRef = useRef<any>(null);  // cssTransition nodeRef for [ FadeInOut ]
 
   var props = {
     propAnchorEl: anchorEl,
@@ -118,27 +125,21 @@ const Map = () => {
 
   // const DetailClick = (e: React.MouseEvent<HTMLButtonElement>)=> {
   const detailClick = (e: React.MouseEvent<HTMLButtonElement>, bakeryId: string)=> {
-    const bakeryInfoList: BakeryGetApi[] = { ...bakeryList };  // 値渡し
-    for (let i = 0; i < bakeryInfoList.length; i++) {
-      if (bakeryInfoList[i].id === bakeryId) {
-        setBakeryInfoRightDrawer(bakeryInfoList[i]);
+    setIsOpenBakeryInfoRightDrawer(false);
+
+    const bakeryInfoList: BakeryGetApi[] = [ ...bakeryList ];  // 値渡しをし、リストとして扱う。
+    bakeryInfoList.forEach((bi) => {
+      if (bi.id === bakeryId) {
+        if (bi.id === detailCLickedBakeryId) {
+          setIsOpenBakeryInfoRightDrawer(false);
+          setDetailCLickedBakeryId("");
+        } else {
+          setBakeryInfoRightDrawer(bi);
+          setIsOpenBakeryInfoRightDrawer(true);
+          setDetailCLickedBakeryId(bakeryId);
+        }
       }
-    }
-
-    // for (let bakeryInfo of bakeryInfoList) {
-    //   if (bakeryInfo.id === bakeryId) {
-    //     setBakeryInfoRightDrawer(bakeryInfo);
-    //   }
-    // }
-    // bakeryInfoList.forEach(bakeryInfo => {
-    //   if (bakeryInfo.id === bakeryId) {
-    //     setBakeryInfoRightDrawer(bakeryInfo);
-    //   }
-    // })
-
-    // console.log(e.currentTarget.value);
-    alert(e.currentTarget.value);
-    alert(bakeryId);
+    });
   }
 
   /** Props **************************/
@@ -147,9 +148,18 @@ const Map = () => {
     bakeryList: bakeryList,
     detailClick: detailClick,
   }
-  /** Props end***********************/
 
-  type typeDefinedBakeryInfoKey = keyof typeof bakeryInfoRightDrawer;
+  var propsBakeryInfoRightDrawer = {
+    bakeryInfoRightDrawer: bakeryInfoRightDrawer,
+    isOpenRightDrawer: isOpenBakeryInfoRightDrawer,
+  }
+  
+  var propsFadeInOut = {
+    inProp: isOpenBakeryInfoRightDrawer,
+    nodeRef: nodeRef,
+    bakeryInfoRightDrawer: bakeryInfoRightDrawer,
+  }
+  /** Props end***********************/
 
   return (
     <Box className="MapApp">
@@ -184,21 +194,9 @@ const Map = () => {
         </div>
       </body>
       <MapBakeriesTable {...propsMapBakeriesTable} />
-      {/* <div className="bakery-info-right-drawer">
-        <table>
-          <tr>
-            <th>aaa</th>
-          </tr>
-          <tr>
-            {Object.keys(bakeryInfoRightDrawer).map((bakeryInfoKey: string, idx: number) => {
-              const typeDefinedBakeryInfoKey = bakeryInfoKey as typeDefinedBakeryInfoKey
-              return (
-                <div>{bakeryInfoRightDrawer[typeDefinedBakeryInfoKey]}</div>
-              )
-            })}
-          </tr>
-        </table>
-      </div> */}
+      <SlideInOut {...propsFadeInOut} >
+        <BakeryInfoRightDrawer {...propsBakeryInfoRightDrawer} />
+      </SlideInOut>
       {/* <div className="bakeries">{JSON.stringify(state.bakeries)}</div> */}
     </Box>
   );
