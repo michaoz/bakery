@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useEffect} from 'react';
-import '../Map.css';
+import '../../css/Map.css';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import { List, ListItem, ListItemText } from '@mui/material/';

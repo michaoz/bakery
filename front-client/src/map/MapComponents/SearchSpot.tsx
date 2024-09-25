@@ -1,4 +1,4 @@
-import '../Map.css';
+import '../../css/Map.css';
 import "leaflet/dist/leaflet.css";
 import { borderRadius } from '@mui/system';
 import { createTheme, useTheme, ThemeProvider, styled } from '@mui/material/styles';
