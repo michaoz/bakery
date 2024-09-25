@@ -1,0 +1,32 @@
+/* entering */
+.slide-inout-enter {
+    opacity: 0;
+    /* transform: translateX(500px) scale(0.6); */
+    transform: translateX(500px);
+}
+/* displaying */
+/* .slide-inout-enter-active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition: all 400ms ease-out;
+    transition: transform 400ms ease-out;
+} */
+/* displaying done */
+.slide-inout-enter-done {
+    opacity: 1;
+    /* transform: translateX(0), scale(1); */
+    transform: translateX(0);
+    /* transition: transform 500ms ease-out; */
+    transition: all 500ms ease-out;
+}
+
+/* hiding */
+.slide-inout-exit {
+    opacity: 1;
+}
+.slide-inout-exit-active {
+    opacity: 0;
+    /* transform: translateX(500px) scale(0.6); */
+    transform: translateX(500px);
+    transition: all 400ms ease-in;
+}
