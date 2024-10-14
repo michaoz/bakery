@@ -1,0 +1,18 @@
+// デバッグ構成
+
+// Google Chromeのデバッグポートを有効にしてデバッグを起動する
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "pwa-chrome",
+        // "type": "chrome",
+        "request": "launch",
+        "name": "debug react",
+        "url": "http://localhost:3000/bakeryList",
+        "webRoot": "${workspaceFolder}",
+        "preLaunchTask": "react-start",
+        "postDebugTask": "terminate-react-start"
+      }
+    ]
+  }
